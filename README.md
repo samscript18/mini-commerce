@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Mini-Commerce — Frontend Assessment
 
-## Getting Started
+**Mini-Commerce** is a client-side e-commerce prototype built with **Next.js 14 (App Router)**, showcasing a minimal shopping experience with persistent cart, mock checkout flow, and modern frontend architecture. Built specifically to demonstrate proficiency with React, Zustand, React Query, and Tailwind CSS.
 
-First, run the development server:
+## 🔍 Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This app simulates a tiny shop where users can:
+- Browse a catalogue of 8+ dummy products 
+- View product details and add to cart
+- Manage the cart (quantity, remove items, view subtotal/total)
+- Complete a mock checkout that generates a random order ID
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+All data is persisted using **localStorage**, ensuring full reload resilience — no backend required.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Design Approach
 
-## Learn More
+- **Layout**: Responsive flex/grid using Tailwind CSS. The catalogue uses a grid that adapts from single column (mobile) to 3 columns (desktop).
+- **Styling**: A clean, modern aesthetic with soft shadows, rounded cards, and consistent spacing. Dark mode is optional.
+- **Accessibility**:
+  - Semantic HTML (`<button>`, `<nav>`, `<section>`, etc.)
+  - Focus-visible states for keyboard navigation
+  - `alt` tags on all product images
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Tools & Techniques
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Tool              | Purpose                                                  |
+|-------------------|----------------------------------------------------------|
+| **Next.js 14**     | App Router for routing, layout, SEO, image optimization |
+| **React Query**   | Fetch catalogue, cache, and handle loading/errors       |
+| **Zustand**       | Global cart state with localStorage persistence         |
+| **Tailwind CSS**  | Utility-first styling with custom variants              |
+| **TypeScript**    | Strict typing throughout (`strict: true`)               |
+| **Jest + RTL**    | Unit testing (e.g., cart functionality)                 |
+| **Prettier + ESLint** | Formatting and linting (no warnings/errors)         |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🧠 Strategy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Performance**:
+  - Optimized images with `next/image`
+  - Font loading strategy with `next/font`
+  - Code-splitting via layouts and route-level loading
+
+---
+
+## 🛑 Error Handling Strategy
+
+| Area               | Handling                                              |
+|--------------------|-------------------------------------------------------|
+| **Product Fetching** | `React Query` handles loading & error UI fallback    |
+| **Cart Actions**    | Disable buttons on invalid state (e.g., 0 quantity)   |
+| **Route Errors**    | Catch-all `not-found.tsx` and `error.tsx` pages      |
+| **LocalStorage Failures** | Try-catch with fallback and toast feedback     |
+
+---
+
+## ✅ Testing Summary
+
+- Includes `cart.test.tsx` using **Jest + React Testing Library**
+- Covers:
+  - Empty cart state
+  - Adding/removing items
+  - Checkout redirect logic
+- All tests and linter rules pass: `npm run test && npm run lint`
+
