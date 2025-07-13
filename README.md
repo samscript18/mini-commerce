@@ -54,7 +54,6 @@ All data is persisted using **localStorage**, ensuring full reload resilience â€
 |--------------------|-------------------------------------------------------|
 | **Product Fetching** | `React Query` handles loading & error UI fallback    |
 | **Cart Actions**    | Disable buttons on invalid state (e.g., 0 quantity)   |
-| **Route Errors**    | Catch-all `not-found.tsx` and `error.tsx` pages      |
 | **LocalStorage Failures** | Try-catch with fallback and toast feedback     |
 
 ---
